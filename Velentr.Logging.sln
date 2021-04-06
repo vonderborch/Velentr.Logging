@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Logging", "Velentr.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Logging.Test", "Velentr.Logging.Test\Velentr.Logging.Test.csproj", "{01E54F42-A596-478A-BF27-87BABCB622D0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{30B32E67-593F-4CA1-87AE-A2E6034F6439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Velentr.Logging.Test.ConsoleLogger", "Velentr.Logging.Test.ConsoleLogger\Velentr.Logging.Test.ConsoleLogger.csproj", "{1BAF752E-721A-4006-BC6F-D013F249DF6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,9 +33,17 @@ Global
 		{01E54F42-A596-478A-BF27-87BABCB622D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01E54F42-A596-478A-BF27-87BABCB622D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01E54F42-A596-478A-BF27-87BABCB622D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BAF752E-721A-4006-BC6F-D013F249DF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BAF752E-721A-4006-BC6F-D013F249DF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BAF752E-721A-4006-BC6F-D013F249DF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BAF752E-721A-4006-BC6F-D013F249DF6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{01E54F42-A596-478A-BF27-87BABCB622D0} = {30B32E67-593F-4CA1-87AE-A2E6034F6439}
+		{1BAF752E-721A-4006-BC6F-D013F249DF6C} = {30B32E67-593F-4CA1-87AE-A2E6034F6439}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EF08031-0858-4824-88B8-11B63A46B77C}

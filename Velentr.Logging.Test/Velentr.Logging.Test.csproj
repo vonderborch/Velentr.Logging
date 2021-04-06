@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Velentr.Collisions\Velentr.Collisions.csproj" />
+    <ProjectReference Include="..\Velentr.Logging\Velentr.Logging.csproj" />
   </ItemGroup>
 
 </Project>
