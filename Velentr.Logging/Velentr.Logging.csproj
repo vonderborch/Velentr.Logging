@@ -10,9 +10,9 @@
     <PackageTags>Logging, Monogame, XNA, FNA</PackageTags>
     <Description>A simple, extensible, and easy-to-use logging library.</Description>
     <PackageProjectUrl>https://github.com/vonderborch/Velentr.Logging</PackageProjectUrl>
-    <Version>1.0.2</Version>
-    <FileVersion>1.0.2</FileVersion>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <Version>1.0.3</Version>
+    <FileVersion>1.0.3</FileVersion>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -30,7 +30,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="Velentr.Collections" Version="1.1.3" />
+    <PackageReference Include="Velentr.Collections" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

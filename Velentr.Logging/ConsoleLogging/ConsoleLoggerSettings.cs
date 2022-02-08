@@ -8,12 +8,14 @@ namespace Velentr.Logging.ConsoleLogging
     public struct ConsoleLoggerSettings
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConsoleLoggerSettings"/> struct.
+        /// Constructor.
         /// </summary>
-        /// <param name="applyColorsToEntries">if set to <c>true</c> [color markdown will be applied to entries]. Defaults to false.</param>
-        /// <param name="backgroundColor">Color of the background. Defaults to the Console's current Background Color.</param>
-        /// <param name="foregroundColor">Color of the foreground. Defaults to the Console's current Foreground Color.</param>
-        public ConsoleLoggerSettings(bool applyColorsToEntries = false, ConsoleColor? backgroundColor = null, ConsoleColor? foregroundColor = null)
+        ///
+        /// <param name="applyColorsToEntries"> <c>true</c> if [color markdown will be applied to
+        ///                                     entries]; otherwise, <c>false</c>. </param>
+        /// <param name="backgroundColor">      (Optional) The background color. </param>
+        /// <param name="foregroundColor">      (Optional) The foreground color. </param>
+        public ConsoleLoggerSettings(bool applyColorsToEntries, ConsoleColor? backgroundColor = null, ConsoleColor? foregroundColor = null)
         {
             BackColor = backgroundColor ?? Console.BackgroundColor;
             ForeColor = foregroundColor ?? Console.ForegroundColor;

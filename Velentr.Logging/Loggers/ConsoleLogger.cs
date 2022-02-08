@@ -37,10 +37,10 @@ namespace Velentr.Logging.Loggers
         /// <param name="batchedLoggingMaxNumberOfItemsPerBatch">The batched logging maximum number of items per batch.</param>
         /// <param name="timeZone">The time zone.</param>
         /// <param name="maxCharactersPerLine">The maximum characters per line.</param>
-        public ConsoleLogger(string name, ConsoleLoggerSettings settings = new ConsoleLoggerSettings(), LogLevel logLevel = LogLevel.Trace, LogMode logMode = LogMode.Instant, int batchedLoggingTimeBetweenBatchesMilliseconds = 5000, int batchedLoggingMaxNumberOfItemsPerBatch = int.MaxValue, TimeZoneInfo timeZone = null, int maxCharactersPerLine = 0) : base(name, logLevel, logMode, batchedLoggingTimeBetweenBatchesMilliseconds, batchedLoggingMaxNumberOfItemsPerBatch, timeZone, maxCharactersPerLine)
+        public ConsoleLogger(string name, ConsoleLoggerSettings? settings = null, LogLevel logLevel = LogLevel.Trace, LogMode logMode = LogMode.Instant, int batchedLoggingTimeBetweenBatchesMilliseconds = 5000, int batchedLoggingMaxNumberOfItemsPerBatch = int.MaxValue, TimeZoneInfo timeZone = null, int maxCharactersPerLine = 0) : base(name, logLevel, logMode, batchedLoggingTimeBetweenBatchesMilliseconds, batchedLoggingMaxNumberOfItemsPerBatch, timeZone, maxCharactersPerLine)
         {
             LogEntries = new ConcurrentQueue<LogEntry>();
-            _settings = settings;
+            _settings = settings ?? new ConsoleLoggerSettings(true);
         }
 
         /// <summary>

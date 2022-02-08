@@ -32,10 +32,10 @@ namespace Velentr.Logging.Loggers
         /// </summary>
         protected ConcurrentQueue<LogEntry> LogEntries;
 
-        public FileLogger(string name, FileLoggerSettings settings = new FileLoggerSettings(), LogLevel logLevel = LogLevel.Trace, LogMode logMode = LogMode.Instant, int batchedLoggingTimeBetweenBatchesMilliseconds = 5000, int batchedLoggingMaxNumberOfItemsPerBatch = int.MaxValue, TimeZoneInfo timeZone = null, int maxCharactersPerLine = 0) : base(name, logLevel, logMode, batchedLoggingTimeBetweenBatchesMilliseconds, batchedLoggingMaxNumberOfItemsPerBatch, timeZone, maxCharactersPerLine)
+        public FileLogger(string name, FileLoggerSettings? settings = null, LogLevel logLevel = LogLevel.Trace, LogMode logMode = LogMode.Instant, int batchedLoggingTimeBetweenBatchesMilliseconds = 5000, int batchedLoggingMaxNumberOfItemsPerBatch = int.MaxValue, TimeZoneInfo timeZone = null, int maxCharactersPerLine = 0) : base(name, logLevel, logMode, batchedLoggingTimeBetweenBatchesMilliseconds, batchedLoggingMaxNumberOfItemsPerBatch, timeZone, maxCharactersPerLine)
         {
             LogEntries = new ConcurrentQueue<LogEntry>();
-            _settings = settings;
+            _settings = settings ?? new FileLoggerSettings("log.txt");
             if (!File.Exists(FilePath))
             {
                 File.WriteAllText(FilePath, "");
@@ -192,7 +192,7 @@ namespace Velentr.Logging.Loggers
                 }
 
                 // log the entry!
-                var bytes = Settings.Encoding.GetBytes(entry.Entry);
+                var bytes = Settings.Encoding.GetBytes($"{entry.Entry}{Environment.NewLine}");
                 if (Settings.StreamBased)
                 {
                     if (_stream == null)
@@ -204,9 +204,9 @@ namespace Velentr.Logging.Loggers
                 }
                 else
                 {
-                    using (var stream = File.OpenWrite(FilePath))
+                    using (var stream = File.Open(FilePath, FileMode.Append))
                     {
-                        _stream.Write(bytes, 0, bytes.Length);
+                        stream.Write(bytes, 0, bytes.Length);
                     }
                 }
             }
