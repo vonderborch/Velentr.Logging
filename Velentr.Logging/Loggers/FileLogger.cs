@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Linq;
 using Velentr.Logging.Entry;
 using Velentr.Logging.FileLogging;
 using Velentr.Logging.Helpers;
@@ -35,6 +36,10 @@ namespace Velentr.Logging.Loggers
         {
             LogEntries = new ConcurrentQueue<LogEntry>();
             _settings = settings;
+            if (!File.Exists(FilePath))
+            {
+                File.WriteAllText(FilePath, "");
+            }
         }
 
         /// <summary>
@@ -153,6 +158,37 @@ namespace Velentr.Logging.Loggers
                     File.Copy(FilePath, newPath);
 
                     File.WriteAllText(FilePath, "", Settings.Encoding);
+
+                    // find all files that match our naming scheme...
+                    var baseName = Path.Combine(Path.GetDirectoryName(FilePath) ?? string.Empty, $"{Path.GetFileNameWithoutExtension(FilePath)}_");
+                    var files = Directory.GetFiles(Path.GetDirectoryName(FilePath) ?? string.Empty).Where(x => x.StartsWith(baseName)).ToList();
+                    if (files.Count > Settings.MaxBackups)
+                    {
+                        // find the oldest file and delete it...
+                        var oldestFile = string.Empty;
+                        var oldestFileTimestamp = DateTime.MaxValue;
+                        for (var j = 0; j < files.Count; j++)
+                        {
+                            var time = File.GetCreationTimeUtc(files[j]);
+                            if (time < oldestFileTimestamp)
+                            {
+                                oldestFileTimestamp = time;
+                                oldestFile = files[j];
+                            }
+
+                        }
+
+                        if (!string.IsNullOrEmpty(oldestFile))
+                        {
+                            File.Delete(oldestFile);
+                        }
+                    }
+                }
+
+                // make sure the file exists!
+                if (!File.Exists(FilePath))
+                {
+                    File.WriteAllText(FilePath, "");
                 }
 
                 // log the entry!

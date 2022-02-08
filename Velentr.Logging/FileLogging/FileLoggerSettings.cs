@@ -9,7 +9,7 @@ namespace Velentr.Logging.FileLogging
 
         private string _filePath;
 
-        public FileLoggerSettings(string filePath = "log.txt", RollingType rollingType = RollingType.FileSize, TimeSpan? rollingTimeSpanInterval = null, long maxFileSizeBytes = long.MaxValue, bool appendIfFileExists = false, bool streamBased = false, Encoding encoding = null, string backupFileTimestampFormat = "dd-mm-yy_hh-mm-ss-fff")
+        public FileLoggerSettings(string filePath = "log.txt", RollingType rollingType = RollingType.FileSize, TimeSpan? rollingTimeSpanInterval = null, long maxFileSizeBytes = long.MaxValue, bool appendIfFileExists = false, bool streamBased = false, Encoding encoding = null, string backupFileTimestampFormat = "dd-mm-yy_hh-mm-ss-fff", int maxBackups = Int32.MaxValue)
         {
             if (string.IsNullOrEmpty(filePath))
             {
@@ -24,6 +24,9 @@ namespace Velentr.Logging.FileLogging
             RollingTimeSpanInterval = rollingTimeSpanInterval ?? TimeSpan.Zero;
             Encoding = encoding ?? Encoding.Unicode;
             BackupFileTimestampFormat = backupFileTimestampFormat;
+            MaxBackups = maxBackups;
+
+            UpdateFilePath();
         }
 
         public bool AppendIfFileExists { get; }
@@ -33,6 +36,8 @@ namespace Velentr.Logging.FileLogging
         public long MaxFileSizeBytes { get; set; }
 
         public string BackupFileTimestampFormat { get; set; }
+
+        public int MaxBackups { get; set; }
 
         public Encoding Encoding { get; set; }
 
